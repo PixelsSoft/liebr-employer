@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend&family=Poppins:wght@400;600;700&display=swap");
+
+* {
+    font-family: "Lexend", sans-serif;
+    font-family: "Poppins", sans-serif;
+}
+
+.bg-red {
+    background: #e61c1c;
+}
+
+.btn-red {
+    background-color: #e61c1c;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    height: 40px;
+}
+
+.btn-red:hover {
+    background-color: #cf1717;
+    color: #fff;
+}
+
+.btn-red-outline {
+    border: 2px solid #e61c1c;
+    color: #cf1717;
+    height: 40px;
+}
+
+.btn-red-outline:hover {
+    border: 2px solid #e61c1c;
+    color: #cf1717;
+}
+
+.btnredoutlinetable {
+    line-height: 0.5;
+    font-size: 11px;
+    border: 2px solid #e61c1c;
+    color: #cf1717;
+}
+
+.btnredoutlinetable:hover {
+    border: 2px solid #e61c1c;
+    background-color: #ffaaaa;
+    color: #cf1717;
+}
+
+.li-navbar {
+    display: inline-block;
+    position: relative;
+    color: #ffffff;
+}
+
+.li-navbar::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ffffff;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.li-navbar:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.showtabledata {
+    box-shadow: 0 10px 15px #eee;
+}
+
+.checkoutsection {
+    background-color: #fff;
+    box-shadow: 0 10px 15px #eee;
+}
+.bgicon{
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 50%;
+    width: 100px;
+}
