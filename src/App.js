@@ -4,11 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/auth/Login";
-import ToWork from "./pages/dashboard/ToWork";
 import Planning from "./pages/dashboard/Planning";
 import CheckOut from "./pages/dashboard/CheckOut";
 import FlexPool from "./pages/dashboard/FlexPool";
 import Projects from "./pages/dashboard/Projects";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 
 export default function App() {
@@ -17,7 +17,7 @@ export default function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/toWork" element={<ToWork />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/planning" element={<Planning />} />
         <Route path="/checkout" element={<CheckOut />} />
         <Route path="/flexPools" element={<FlexPool />} />

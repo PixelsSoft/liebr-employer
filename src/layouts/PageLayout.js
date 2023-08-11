@@ -7,8 +7,9 @@ export default function PageLayout( props ) {
         <Fragment>
             <Header />
             <div
-                className='d-flex bg-secondary-subtle'
-                style={{ height: "92vh" }}>
+            // className='d-flex bg-secondary-subtle'
+            // style={{ minHeight: "92vh" }}
+            >
                 {props.children}
 
             </div>

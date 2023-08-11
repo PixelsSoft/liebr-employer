@@ -78,9 +78,35 @@
     background-color: #fff;
     box-shadow: 0 10px 15px #eee;
 }
-.bgicon{
+
+.bgicon {
     background-color: #eee;
     padding: 20px;
     border-radius: 50%;
     width: 100px;
+}
+
+/* dashboard */
+.hero-banner {
+    background-color: #e61c1c;
+    height: 300px;
+    width: 100%;
+    border-radius: 0 0 0 120px;
+}
+
+.dash-icon {
+    width: 22px;
+}
+
+.fa-less-than {
+    font-size: 32px;
+}
+
+.anchortext {
+    text-decoration: none;
+    color: #000;
+}
+
+.dash-head {
+    font-size: 20px;
 }

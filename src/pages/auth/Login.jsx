@@ -12,7 +12,7 @@ export default function Login() {
 
     const onSubmit = () => {
         console.log( "onsubmit" )
-        navigate( '/toWork' )
+        navigate( '/Dashboard' )
 
     }
     return (

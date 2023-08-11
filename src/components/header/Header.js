@@ -14,7 +14,7 @@ export default function Header() {
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav d-flex w-100">
                         <li class="nav-item px-1 mx-3 li-navbar">
-                            <a class="nav-link text-white active fw-semibold" aria-current="page" href="/toWork">To Work</a>
+                            <a class="nav-link text-white active fw-semibold" aria-current="page" href="/DashBoard">Dashboard</a>
                         </li>
                         <li class="nav-item px-1 mx-3 li-navbar">
                             <a class="nav-link text-white fw-semibold" href="/planning">Planning</a>
