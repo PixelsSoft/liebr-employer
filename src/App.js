@@ -9,8 +9,7 @@ import CheckOut from "./pages/dashboard/CheckOut";
 import FlexPool from "./pages/dashboard/FlexPool";
 import Projects from "./pages/dashboard/Projects";
 import Dashboard from "./pages/dashboard/Dashboard";
-
-
+import CreatePlannings from "./pages/dashboard/planning/createPlanning";
 export default function App() {
   return (
     <>
@@ -19,6 +18,11 @@ export default function App() {
         <Route path="/" element={<Login />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/planning" element={<Planning />} />
+
+        <Route
+          path="/planning/jobs/shifts/:create"
+          element={<CreatePlannings />}
+        />
         <Route path="/checkout" element={<CheckOut />} />
         <Route path="/flexPools" element={<FlexPool />} />
         <Route path="/Projects" element={<Projects />} />
