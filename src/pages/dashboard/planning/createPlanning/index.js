@@ -6,6 +6,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Form from "react-bootstrap/Form";
 import Table from "react-bootstrap/Table";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const CreatePlannings = () => {
   return (
@@ -60,7 +61,24 @@ const CreatePlannings = () => {
                       <small className="">Date and time</small>
                     </p>
                     <Row>
-                      <Col lg={3}></Col>
+                      <Col lg={4}>
+                        <ListGroup variant="flush">
+                          <ListGroup.Item>Cras justo odio</ListGroup.Item>
+                          <ListGroup.Item>Start 00:00 End 00:00</ListGroup.Item>
+                          <ListGroup.Item className="bg-transparent shadow-sm">
+                            <div className="d-flex w-100 justify-content-between">
+                              <div>
+                                <span>Flexible start and end time</span>
+                              </div>
+                              <div>
+                                <Form>
+                                  <Form.Check type="switch" />
+                                </Form>
+                              </div>
+                            </div>
+                          </ListGroup.Item>
+                        </ListGroup>
+                      </Col>
                       <Col lg={3}>
                         <Card className="border-0 shadow-sm rounded-0 p-2">
                           <Card.Body>
@@ -80,7 +98,7 @@ const CreatePlannings = () => {
                           </Card.Body>
                         </Card>
                       </Col>
-                      <Col lg={6}></Col>
+                      <Col></Col>
                     </Row>
                   </div>
                   <div>
@@ -123,7 +141,7 @@ const CreatePlannings = () => {
             <Row>
               <Col lg={12}>
                 <Tabs
-                  defaultActiveKey="profile"
+                  defaultActiveKey="details"
                   id="uncontrolled-tab-example"
                   className="mb-3"
                 >
@@ -238,7 +256,9 @@ const CreatePlannings = () => {
                                     <tr>
                                       <td width="60%">
                                         <div className="d-flex">
-                                          <span className="fw-bold">El Essakkati</span>
+                                          <span className="fw-bold">
+                                            El Essakkati
+                                          </span>
                                         </div>
                                       </td>
                                       <td width="20%">
