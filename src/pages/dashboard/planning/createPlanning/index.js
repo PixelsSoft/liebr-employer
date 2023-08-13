@@ -1,14 +1,36 @@
-import React, { Fragment } from "react";
-import { Button, Card, Col, Container, Row } from "react-bootstrap";
-import Select from "react-select";
+import moment from "moment";
 import InputNumber from "rc-input-number";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+import React, { Fragment, useEffect, useRef, useState } from "react";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import Table from "react-bootstrap/Table";
 import ListGroup from "react-bootstrap/ListGroup";
+import Tab from "react-bootstrap/Tab";
+import Table from "react-bootstrap/Table";
+import Tabs from "react-bootstrap/Tabs";
+import { BsCalendar3, BsClock, BsClockHistory } from "react-icons/bs";
+import { useLocation } from "react-router-dom";
+import Select from "react-select";
+import Flatpickr from "react-flatpickr";
+
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
 const CreatePlannings = () => {
+  const datePickerRef = useRef(null);
+  const query = useQuery();
+  const [selectedDate, setSelectedDate] = useState(
+    moment().format("yyyy-MM-DD")
+  );
+
+  useEffect(() => {
+    setSelectedDate(query.get("on"));
+  }, [query.get("on")]);
+  const handleClickDatePicker = (date) => {
+    setSelectedDate(moment(date[0]).format("yyyy-MM-DD"));
+  };
   return (
     <Fragment>
       <Container fluid>
@@ -29,20 +51,24 @@ const CreatePlannings = () => {
           </Col>
           <Col></Col>
         </Row>
-        <Row className="bg-warning text-white py-1 pt-3">
+        <Row className="bg-warning text-white py-1 ">
           <Col></Col>
           <Col lg={10}>
             <Row>
-              <Col lg={12}>
+              <Col></Col>
+              <Col lg={10}>
                 <p className="text-center">
-                  <span>
-                    Your current credit is too low to allow factoring for
-                    FreeFlexers, this significantly reduces the chance of
-                    finding suitable FreeFlexers. We recommend that you increase
-                    your credit before you place the shift.
-                  </span>
+                  <>
+                    <small>
+                      Your current credit is too low to allow factoring for
+                      FreeFlexers, this significantly reduces the chance of
+                      finding suitable FreeFlexers. We recommend that you
+                      increase your credit before you place the shift.
+                    </small>
+                  </>
                 </p>
               </Col>
+              <Col></Col>
             </Row>
           </Col>
           <Col></Col>
@@ -58,17 +84,64 @@ const CreatePlannings = () => {
                 <div className="d-flex flex-column gap-3">
                   <div>
                     <p className="mb-0">
-                      <small className="">Date and time</small>
+                      <small>
+                        <small className="">Date and time</small>
+                      </small>
                     </p>
                     <Row>
-                      <Col lg={4}>
+                      <Col lg={3}>
                         <ListGroup variant="flush">
-                          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                          <ListGroup.Item>Start 00:00 End 00:00</ListGroup.Item>
+                          <ListGroup.Item
+                            className="cursor-pointer"
+                            onClick={() => {
+                              datePickerRef.current.flatpickr.open();
+                            }}
+                          >
+                            <div>
+                              <div className="d-flex gap-2 align-items-center">
+                                <div>
+                                  <BsCalendar3 />
+                                </div>
+                                <div>
+                                  <small>{moment(selectedDate)?.format("DD-MM-yyyy")}</small>
+                                </div>
+                              </div>
+                            </div>
+                          </ListGroup.Item>
+                          <Flatpickr
+                            ref={datePickerRef}
+                            style={{
+                              width: 0,
+                              height: 0,
+                              padding: 0,
+                              border: 0,
+                            }}
+                            value={selectedDate}
+                            onChange={handleClickDatePicker}
+                          />
+                          <ListGroup.Item>
+                            <div>
+                              <div className="d-flex gap-2">
+                                <div>
+                                  <BsClock />
+                                </div>
+                                <div>
+                                  <small>Start 00:00 End 00:00</small>
+                                </div>
+                              </div>
+                            </div>
+                          </ListGroup.Item>
                           <ListGroup.Item className="bg-transparent shadow-sm">
                             <div className="d-flex w-100 justify-content-between">
                               <div>
-                                <span>Flexible start and end time</span>
+                                <div className="d-flex gap-2">
+                                  <div>
+                                    <BsClockHistory />
+                                  </div>
+                                  <div>
+                                    <small>Flexible start and end time</small>
+                                  </div>
+                                </div>
                               </div>
                               <div>
                                 <Form>
@@ -85,8 +158,10 @@ const CreatePlannings = () => {
                             <div>
                               <div>
                                 <Card.Text className="fw-normal text-center">
-                                  Similar shifts in your region are on average
-                                  €20.90 per hour (including usage fee)
+                                  <small>
+                                    Similar shifts in your region are on average
+                                    €20.90 per hour (including usage fee)
+                                  </small>
                                 </Card.Text>
                               </div>
                               <div className="mt-3 d-flex justify-content-center">
@@ -103,7 +178,9 @@ const CreatePlannings = () => {
                   </div>
                   <div>
                     <p className="mb-0">
-                      <small className="">Number of FreeFlexers</small>
+                      <small>
+                        <small className="">Number of FreeFlexers</small>
+                      </small>
                     </p>
                     <Row>
                       <Col lg={3}>
@@ -119,11 +196,34 @@ const CreatePlannings = () => {
                   </div>
                   <div>
                     <p className="mb-0">
-                      <small className="">Total cost per hour</small>
+                      <small>
+                        <small className="">Total cost per hour</small>
+                      </small>
                     </p>
                     <Row>
                       <Col lg={6}>
-                        <Select options={[]} />
+                        <ListGroup variant="flush">
+                          <ListGroup.Item className="p-0">
+                            <Select options={[]} />
+                          </ListGroup.Item>
+
+                          <ListGroup.Item className="bg-transparent shadow-sm">
+                            <div className="d-flex w-100 justify-content-between">
+                              <div>
+                                <small>
+                                  Increase the cost by 25% if this shift is
+                                  still unfulfilled 5 days before it starts
+                                </small>
+                              </div>
+                              <div>
+                                <Form>
+                                  <Form.Check type="switch" />
+                                </Form>
+                              </div>
+                            </div>
+                          </ListGroup.Item>
+                        </ListGroup>
+                        {/* <Select options={[]} /> */}
                       </Col>
 
                       <Col lg={6}></Col>
@@ -149,8 +249,11 @@ const CreatePlannings = () => {
                     <div className="d-flex flex-column gap-3">
                       <div>
                         <p className="mb-0">
-                          <small className="">
-                            Automatically accept FreeFlexers from your Flexpool
+                          <small>
+                            <small className="">
+                              Automatically accept FreeFlexers from your
+                              Flexpool
+                            </small>
                           </small>
                         </p>
                         <Row>
@@ -187,7 +290,9 @@ const CreatePlannings = () => {
                       </div>
                       <div>
                         <p className="mb-0">
-                          <small className="">Cancellation policy</small>
+                          <small>
+                            <small className="">Cancellation policy</small>
+                          </small>
                         </p>
                         <Row>
                           <Col lg={5}>
@@ -234,18 +339,24 @@ const CreatePlannings = () => {
                                     width="60%"
                                   ></th>
                                   <th className="bg-transparent" width="20%">
-                                    <small className="fw-normal">
-                                      Edit / Cancel Shift
+                                    <small>
+                                      <small className="fw-normal">
+                                        Edit / Cancel Shift
+                                      </small>
                                     </small>
                                   </th>
                                   <th className="bg-transparent" width="20%">
-                                    <small className="fw-normal">
-                                      Select Applicants
+                                    <small>
+                                      <small className="fw-normal">
+                                        Select Applicants
+                                      </small>
                                     </small>
                                   </th>
                                   <th className="bg-transparent" width="20%">
-                                    <small className="fw-normal">
-                                      Checkout
+                                    <small>
+                                      <small className="fw-normal">
+                                        Checkout
+                                      </small>
                                     </small>
                                   </th>
                                 </tr>
@@ -279,23 +390,6 @@ const CreatePlannings = () => {
                                     </tr>
                                   );
                                 })}
-                                {/* <tr>
-                                  <td>1</td>
-                                  <td>Mark</td>
-                                  <td>Otto</td>
-                                  <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                  <td>2</td>
-                                  <td>Jacob</td>
-                                  <td>Thornton</td>
-                                  <td>@fat</td>
-                                </tr>
-                                <tr>
-                                  <td>3</td>
-                                  <td colSpan={2}>Larry the Bird</td>
-                                  <td>@twitter</td>
-                                </tr> */}
                               </tbody>
                             </Table>
                           </Col>
