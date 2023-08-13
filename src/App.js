@@ -3,13 +3,16 @@ import { Route, Routes } from "react-router-dom";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "flatpickr/dist/themes/material_green.css";
+
 import Login from "./pages/auth/Login";
-import Planning from "./pages/dashboard/Planning";
+
 import CheckOut from "./pages/dashboard/CheckOut";
 import FlexPool from "./pages/dashboard/FlexPool";
 import Projects from "./pages/dashboard/Projects";
 import Dashboard from "./pages/dashboard/Dashboard";
 import CreatePlannings from "./pages/dashboard/planning/createPlanning";
+import Planning from "./pages/dashboard/planning/plannings";
 export default function App() {
   return (
     <>
