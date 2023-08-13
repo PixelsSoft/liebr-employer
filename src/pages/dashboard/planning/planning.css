@@ -1,0 +1,8 @@
+.planning-plus-button {
+    background: transparent;
+    color: transparent;
+}
+.planning-plus-button:hover {
+    background: #E7E5E7;
+    color: #0f0017;
+}
