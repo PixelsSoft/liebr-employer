@@ -52,8 +52,8 @@ export default function Planning() {
     moment().format("yyyy-MM-DD")
   );
   const [toggle, setToggle] = useState({
-    toggle1: false,
-    toggle2: false,
+    toggle1: true,
+    toggle2: true,
     toggle3: false,
   });
 
@@ -97,7 +97,7 @@ export default function Planning() {
   return (
     <PageLayout>
       <Fragment>
-        <Container fluid className="bg-light min-vh-100">
+        <Container fluid className="bg-light">
           <Row className="bg-white text-dark py-1 pb-5">
             <Col></Col>
             <Col lg={10}>

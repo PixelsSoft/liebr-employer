@@ -81,7 +81,7 @@ export default function Planning() {
   return (
     <PageLayout>
       <Fragment>
-        <Container fluid className="bg-light min-vh-100">
+        <Container fluid className="bg-light">
           <Row className="bg-white text-dark py-1 pb-5">
             <Col></Col>
             <Col lg={10}>
