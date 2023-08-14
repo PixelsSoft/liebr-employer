@@ -12,6 +12,8 @@ import Projects from "./pages/dashboard/project/projects";
 import FlexPools from "./pages/dashboard/flexPool/flexPools";
 import CheckOut from "./pages/dashboard/checkout";
 import Login from "./pages/auth/login.js";
+import LoginWithoutPassword from "./pages/auth/loginWithoutPassword";
+import ResetPassword from "./pages/auth/resetPassword";
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
       <GlobalStyles />
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/without-password" element={<LoginWithoutPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/planning" element={<Planning />} />
 
