@@ -1,15 +1,18 @@
-import React, { Fragment } from "react";
+import moment from "moment";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
-import Select from "react-select";
-import PageLayout from "../../layouts/PageLayout";
-import moment from "moment";
-import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { BsCalendar3, BsTelephone } from "react-icons/bs";
-import { MdArrowForwardIos, MdArrowBackIosNew } from "react-icons/md";
-import { AiOutlinePlus } from "react-icons/ai";
+import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import { useLocation, useNavigate } from "react-router-dom";
+import Select from "react-select";
 
+import { AiOutlinePlus } from "react-icons/ai";
+import PageLayout from "../../../../layouts/PageLayout";
+
+import Flatpickr from "react-flatpickr";
+import "../planning.css";
 const shiftStatus = [
   {
     label: "Fulfilled",
@@ -43,11 +46,16 @@ function useQuery() {
 export default function Planning() {
   const query = useQuery();
   const navigate = useNavigate();
-
+  const datePickerRef = useRef(null);
   const [selectedDayOption, setSelectedDayOption] = useState(daysFilter[0]);
   const [selectedDate, setSelectedDate] = useState(
     moment().format("yyyy-MM-DD")
   );
+  const [toggle, setToggle] = useState({
+    toggle1: true,
+    toggle2: true,
+    toggle3: false,
+  });
 
   useEffect(() => {
     setSelectedDate(query.get("on"));
@@ -77,6 +85,14 @@ export default function Planning() {
           .format("yyyy-MM-DD")}`
       );
     }
+  };
+
+  const handleClickDatePicker = (date) => {
+    navigate(`/planning?on=${moment(date[0]).format("yyyy-MM-DD")}`);
+  };
+
+  const handleToggle = (toggleName) => {
+    setToggle((prev) => ({ ...prev, [toggleName]: !prev?.[toggleName] }));
   };
   return (
     <PageLayout>
@@ -110,27 +126,42 @@ export default function Planning() {
                         Week {moment(selectedDate).week()}
                       </span>
                     </div>
-                    <div className="shadow-sm">
-                      <Button
-                        variant="transparent"
-                        className="border rounded-0"
-                        onClick={() => handleClickNextAndPreviousWeek(-1)}
+                    <div className="d-flex flex-column ">
+                      <div className="shadow-sm ">
+                        <Button
+                          variant="transparent"
+                          className="border rounded-0"
+                          onClick={() => handleClickNextAndPreviousWeek(-1)}
+                        >
+                          <MdArrowBackIosNew />
+                        </Button>
+                        <Button
+                          variant="transparent"
+                          className="border rounded-0"
+                          onClick={() => {
+                            datePickerRef.current.flatpickr.open();
+                          }}
+                        >
+                          <BsCalendar3 />
+                        </Button>
+                        <Button
+                          variant="transparent"
+                          className="border rounded-0"
+                          onClick={() => handleClickNextAndPreviousWeek(1)}
+                        >
+                          <MdArrowForwardIos />
+                        </Button>
+                      </div>
+                      <div
+                        style={{ width: 0, height: 0, padding: 0, border: 0 }}
                       >
-                        <MdArrowBackIosNew />
-                      </Button>
-                      <Button
-                        variant="transparent"
-                        className="border rounded-0"
-                      >
-                        <BsCalendar3 />
-                      </Button>
-                      <Button
-                        variant="transparent"
-                        className="border rounded-0"
-                        onClick={() => handleClickNextAndPreviousWeek(1)}
-                      >
-                        <MdArrowForwardIos />
-                      </Button>
+                        <Flatpickr
+                          ref={datePickerRef}
+                          style={{ width: 0, height: 0, padding: 0, border: 0 }}
+                          value={selectedDate}
+                          onChange={handleClickDatePicker}
+                        />
+                      </div>
                     </div>
                   </div>
                 </Col>
@@ -173,11 +204,10 @@ export default function Planning() {
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
-                {/* <Col lg={2}></Col> */}
                 <Col lg={3} className="d-flex justify-content-end">
                   <Button
                     variant="success"
-                    className="px-3 py-2 rounded-1"
+                    className="px-3 rounded-1"
                     onClick={handleClickCreateShift}
                   >
                     <span className="">Create a shift</span>
@@ -189,7 +219,7 @@ export default function Planning() {
                   <Row>
                     <Col lg={3} className="px-0">
                       <div
-                        className="d-flex w-100 align-items-center px-2 border-end-0"
+                        className="d-flex w-100 align-items-center px-2 "
                         style={{ height: "90px", background: "#FBFBFB" }}
                       >
                         <span className="fs-4 fw-bold">
@@ -250,62 +280,102 @@ export default function Planning() {
                   <Row>
                     <Col lg={12} className="px-0">
                       <div
-                        className="d-flex w-100 align-items-center px-2 cursor-pointer"
+                        className="d-flex w-100 justify-content-between align-items-center px-2 cursor-pointer"
                         style={{ height: "50px" }}
+                        onClick={() => handleToggle("toggle1")}
                       >
-                        <span className="fw-bold">Liebr Holding B.V.</span>
+                        <div>
+                          <span className="fw-bold">Liebr Holding B.V.</span>
+                        </div>
+                        <div className="px-2">
+                          {toggle?.toggle1 ? <SlArrowUp /> : <SlArrowDown />}
+                        </div>
                       </div>
                     </Col>
                   </Row>
-                  <Row>
-                    <Col lg={12} className="px-0">
-                      <div
-                        className="d-flex w-100 align-items-center border border-bottom-0 px-2 cursor-pointer"
-                        style={{ height: "50px" }}
-                      >
-                        <span className="fw-bold">Algemeen</span>
-                      </div>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col lg={3} className="px-0">
-                      <div
-                        className="d-flex w-100 align-items-center border border-end-0 px-2"
-                        style={{ height: "70px" }}
-                      >
-                        <span>Schoonmaker</span>
-                      </div>
-                    </Col>
-                    <Col lg={9} className="px-0 d-flex">
-                      {Array.from({ length: selectedDayOption?.value })?.map(
-                        (item, index) => {
-                          const dateAndDay = moment(selectedDate).add(
-                            index,
-                            "day"
-                          );
-                          return (
-                            <div
-                              className="d-flex align-items-center border-top border-bottom"
-                              onClick={() => handleClickCreateShift(dateAndDay)}
-                              style={{
-                                height: "70px",
-                                background:
-                                  index % 2 == 0 ? "#F3F2F3" : "#FBFBFB",
-                                width: `${100 / selectedDayOption?.value}%`,
-                                cursor: "pointer",
-                              }}
-                            >
-                              <div className="w-100 h-100 d-flex justify-content-center align-items-center ">
-                                <span>
-                                  <AiOutlinePlus size={25} color="inherit" />
-                                </span>
-                              </div>
+                  {toggle?.toggle1 ? (
+                    <>
+                      <Row>
+                        <Col lg={12} className="px-0">
+                          <div
+                            className={`d-flex w-100 justify-content-between align-items-center border px-2 cursor-pointer ${
+                              toggle?.toggle2 ? "border-bottom-0" : ""
+                            }`}
+                            style={{ height: "50px" }}
+                            onClick={() => handleToggle("toggle2")}
+                          >
+                            <div>
+                              <span className="fw-bold">Algemeen</span>
                             </div>
-                          );
-                        }
-                      )}
-                    </Col>
-                  </Row>
+                            <div className="px-2">
+                              {toggle?.toggle2 ? (
+                                <SlArrowUp />
+                              ) : (
+                                <SlArrowDown />
+                              )}
+                            </div>
+                          </div>
+                        </Col>
+                      </Row>
+                      {toggle?.toggle2 ? (
+                        <>
+                          <Row>
+                            <Col lg={3} className="px-0">
+                              <div
+                                className="d-flex w-100 align-items-center border border-end-0 px-2"
+                                style={{ height: "70px" }}
+                              >
+                                <span>Schoonmaker</span>
+                              </div>
+                            </Col>
+                            <Col lg={9} className="px-0 d-flex">
+                              {Array.from({
+                                length: selectedDayOption?.value,
+                              })?.map((item, index) => {
+                                const dateAndDay = moment(selectedDate).add(
+                                  index,
+                                  "day"
+                                );
+                                return (
+                                  <div
+                                    className="d-flex align-items-center border-top border-bottom"
+                                    style={{
+                                      height: "70px",
+                                      background:
+                                        index % 2 == 0 ? "#F3F2F3" : "#FBFBFB",
+                                      width: `${
+                                        100 / selectedDayOption?.value
+                                      }%`,
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    <div
+                                      className="w-100 h-100 d-flex justify-content-center align-items-center planning-plus-button"
+                                      onClick={() =>
+                                        handleClickCreateShift(dateAndDay)
+                                      }
+                                    >
+                                      <span>
+                                        <AiOutlinePlus size={25} />
+                                      </span>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </Col>
+                          </Row>
+                        </>
+                      ) : null}
+                    </>
+                  ) : (
+                    <>
+                      <Row>
+                        <Col lg={12} className="px-0">
+                          <div className="d-flex w-100 align-items-center border border-bottom-0 px-2 cursor-pointer"></div>
+                        </Col>
+                      </Row>
+                    </>
+                  )}
                 </Col>
               </Row>
             </Col>

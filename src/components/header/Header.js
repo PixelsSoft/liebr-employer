@@ -1,6 +1,7 @@
 import React from 'react'
 import { Images } from '../../Constant/Constant'
 import './Header.css'
+import moment from 'moment/moment'
 export default function Header() {
     return (
         <div><nav class="navbar navbar-expand-lg bg-red">
@@ -17,7 +18,7 @@ export default function Header() {
                             <a class="nav-link text-white active fw-semibold" aria-current="page" href="/DashBoard">Dashboard</a>
                         </li>
                         <li class="nav-item px-1 mx-3 li-navbar">
-                            <a class="nav-link text-white fw-semibold" href="/planning">Planning</a>
+                            <a class="nav-link text-white fw-semibold" href={`/planning?on=${moment().format("yyyy-MM-DD")}`}>Planning</a>
                         </li>
                         <li class="nav-item px-1 mx-3 li-navbar">
                             <a class="nav-link text-white fw-semibold" href="/Projects">Projects</a>
