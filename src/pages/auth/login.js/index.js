@@ -48,6 +48,7 @@ export default function Login() {
                 <p className={"text-body-tertiary"}>
                   Forgot password? You can either choose to{" "}
                   <Link
+                    to={"without-password"}
                     className="link-primary"
                     style={{ textDecoration: "none" }}
                   >
@@ -55,6 +56,7 @@ export default function Login() {
                   </Link>{" "}
                   or{" "}
                   <Link
+                    to={"reset-password"}
                     className="link-primary"
                     style={{ textDecoration: "none" }}
                   >
@@ -68,7 +70,7 @@ export default function Login() {
                   <Button
                     variant="danger"
                     type="submit"
-                    className="w-100"
+                    className="w-100 py-3"
                     onClick={() => {
                       onSubmit();
                     }}
