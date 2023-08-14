@@ -5,16 +5,13 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "flatpickr/dist/themes/material_green.css";
 
-import Login from "./pages/auth/Login";
-
-// import CheckOut from "./pages/dashboard/CheckOut";
-// import FlexPool from "./pages/dashboard/FlexPool";
 import Dashboard from "./pages/dashboard/Dashboard";
 import CreatePlannings from "./pages/dashboard/planning/createPlanning";
 import Planning from "./pages/dashboard/planning/plannings";
 import Projects from "./pages/dashboard/project/projects";
 import FlexPools from "./pages/dashboard/flexPool/flexPools";
 import CheckOut from "./pages/dashboard/checkout";
+import Login from "./pages/auth/login.js";
 
 export default function App() {
   return (
