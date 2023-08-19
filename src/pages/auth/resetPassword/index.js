@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Labels } from "../../../assets/labels";
+
 const ResetPassword = () => {
   const navigate = useNavigate();
   const onSubmit = () => {
@@ -20,15 +22,15 @@ const ResetPassword = () => {
               <Row className="mb-4">
                 <Form.Group as={Col}>
                   <Form.Label>
-                    <span className="fs-4 fw-bold">Reset password</span>
+                    <span className="fs-4 fw-bold">{Labels.resetPassword}</span>
                   </Form.Label>
                 </Form.Group>
               </Row>
 
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Label>{Labels.email}</Form.Label>
+                  <Form.Control type="email" placeholder={Labels.email} />
                 </Form.Group>
               </Row>
 
@@ -42,7 +44,7 @@ const ResetPassword = () => {
                       onSubmit();
                     }}
                   >
-                    Send link
+                    {Labels.sendLink}
                   </Button>
                 </Form.Group>
               </Row>
