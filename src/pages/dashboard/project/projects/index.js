@@ -4,6 +4,8 @@ import Table from "react-bootstrap/Table";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FaArchive } from "react-icons/fa";
 import PageLayout from "../../../../layouts/PageLayout";
+import { Link } from "react-router-dom";
+import { Labels } from "../../../../assets/labels";
 
 const Projects = () => {
   return (
@@ -17,25 +19,33 @@ const Projects = () => {
                 <Col lg={12}>
                   <div className="d-flex flex-wrap justify-content-between gap-3 py-3">
                     <div>
-                      <span className="fs-4 fw-bold">Projects</span>
+                      <span className="fs-4 fw-bold">{Labels.projects}</span>
                     </div>
                     <div className="d-flex gap-3">
-                      <Button variant="danger" className="px-3 py-1 rounded-1">
-                        <div className="d-flex gap-1">
-                          <div>
-                            <AiOutlinePlus color="#ffff" />
+                      <Link to={"/projects/create"}>
+                        <Button
+                          variant="danger"
+                          className="px-3 py-1 rounded-1"
+                        >
+                          <div className="d-flex gap-1">
+                            <div>
+                              <AiOutlinePlus color="#ffff" />
+                            </div>
+                            <div>
+                              <span>{Labels.createNewProject}</span>
+                            </div>
                           </div>
-                          <div>
-                            <span>Create new project</span>
-                          </div>
-                        </div>
-                      </Button>
-                      <Button
-                        variant="white"
-                        className="px-3 py-1 rounded-1  border"
-                      >
-                        <span>Show archive</span>
-                      </Button>
+                        </Button>
+                      </Link>
+
+                      <Link to={"/projects/archive"}>
+                        <Button
+                          variant="white"
+                          className="px-3 py-1 rounded-1  border"
+                        >
+                          <span>{Labels.showArchive}</span>
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </Col>
@@ -77,7 +87,7 @@ const Projects = () => {
                                     </div>
                                     <div>
                                       <small>
-                                        <small>Show archive</small>
+                                        <small>{Labels.showArchive}</small>
                                       </small>
                                     </div>
                                   </div>

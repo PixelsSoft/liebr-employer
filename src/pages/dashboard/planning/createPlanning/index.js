@@ -11,6 +11,7 @@ import { BsCalendar3, BsClock, BsClockHistory } from "react-icons/bs";
 import { useLocation } from "react-router-dom";
 import Select from "react-select";
 import Flatpickr from "react-flatpickr";
+import { Labels } from "../../../../assets/labels";
 
 function useQuery() {
   const { search } = useLocation();
@@ -44,7 +45,7 @@ const CreatePlannings = () => {
               <Col lg={4}></Col>
               <Col lg={4} className="d-flex justify-content-end">
                 <Button className="px-3 py-2 rounded-1">
-                  <span>Place recurring shift</span>
+                  <span>{Labels.placeRecurringShift}</span>
                 </Button>
               </Col>
             </Row>
@@ -60,10 +61,9 @@ const CreatePlannings = () => {
                 <p className="text-center">
                   <>
                     <small>
-                      Your current credit is too low to allow factoring for
-                      FreeFlexers, this significantly reduces the chance of
-                      finding suitable FreeFlexers. We recommend that you
-                      increase your credit before you place the shift.
+                      {
+                        Labels.yourCurrentCreditIsTooLowToAllowFactoringForFreeflexersThisSignificantlyReducesTheChanceOfFindingSuitableFreeflexersWeRecommendThatYouIncreaseYourCreditBeforeYouPlaceTheShift
+                      }
                     </small>
                   </>
                 </p>
@@ -79,13 +79,13 @@ const CreatePlannings = () => {
             <Row>
               <Col lg={12}>
                 <p className="py-3">
-                  <span className="fw-bold">Create a shift</span>
+                  <span className="fw-bold">{Labels.createAShift}</span>
                 </p>
                 <div className="d-flex flex-column gap-3">
                   <div>
                     <p className="mb-0">
                       <small>
-                        <small className="">Date and time</small>
+                        <small className="">{Labels.dateAndTime}</small>
                       </small>
                     </p>
                     <Row>
@@ -103,7 +103,9 @@ const CreatePlannings = () => {
                                   <BsCalendar3 />
                                 </div>
                                 <div>
-                                  <small>{moment(selectedDate)?.format("DD-MM-yyyy")}</small>
+                                  <small>
+                                    {moment(selectedDate)?.format("DD-MM-yyyy")}
+                                  </small>
                                 </div>
                               </div>
                             </div>
@@ -139,7 +141,9 @@ const CreatePlannings = () => {
                                     <BsClockHistory />
                                   </div>
                                   <div>
-                                    <small>Flexible start and end time</small>
+                                    <small>
+                                      {Labels.flexibleStartAndEndTime}
+                                    </small>
                                   </div>
                                 </div>
                               </div>
@@ -159,14 +163,15 @@ const CreatePlannings = () => {
                               <div>
                                 <Card.Text className="fw-normal text-center">
                                   <small>
-                                    Similar shifts in your region are on average
-                                    €20.90 per hour (including usage fee)
+                                    {
+                                      Labels.similarShiftsInYourRegionAreOnAveragePerHourIncludingUsageFee
+                                    }
                                   </small>
                                 </Card.Text>
                               </div>
                               <div className="mt-3 d-flex justify-content-center">
                                 <Button className="px-3 py-2 rounded-1">
-                                  <span>I want the same for this shift</span>
+                                  <span>{Labels.iWantTheSameForThisShift}</span>
                                 </Button>
                               </div>
                             </div>
@@ -179,7 +184,10 @@ const CreatePlannings = () => {
                   <div>
                     <p className="mb-0">
                       <small>
-                        <small className="">Number of FreeFlexers</small>
+                        <small className="">
+                          {" "}
+                          {Labels.numberOfFreeflexers}
+                        </small>
                       </small>
                     </p>
                     <Row>
@@ -197,7 +205,7 @@ const CreatePlannings = () => {
                   <div>
                     <p className="mb-0">
                       <small>
-                        <small className="">Total cost per hour</small>
+                        <small className=""> {Labels.totalCostPerHour}</small>
                       </small>
                     </p>
                     <Row>
@@ -211,8 +219,9 @@ const CreatePlannings = () => {
                             <div className="d-flex w-100 justify-content-between">
                               <div>
                                 <small>
-                                  Increase the cost by 25% if this shift is
-                                  still unfulfilled 5 days before it starts
+                                  {
+                                    Labels.increaseTheCostByIfThisShiftIsStillUnfulfilledDaysBeforeItStarts
+                                  }
                                 </small>
                               </div>
                               <div>
@@ -245,14 +254,15 @@ const CreatePlannings = () => {
                   id="uncontrolled-tab-example"
                   className="mb-3"
                 >
-                  <Tab eventKey="details" title="Details">
+                  <Tab eventKey="details" title={Labels.details}>
                     <div className="d-flex flex-column gap-3">
                       <div>
                         <p className="mb-0">
                           <small>
                             <small className="">
-                              Automatically accept FreeFlexers from your
-                              Flexpool
+                              {
+                                Labels.automaticallyAcceptFreeflexersFromYourFlexpool
+                              }
                             </small>
                           </small>
                         </p>
@@ -268,9 +278,9 @@ const CreatePlannings = () => {
                                     <div className="d-flex justify-content-between">
                                       <div>
                                         <p className="fw-normal">
-                                          48 hours before the start of the
-                                          shift, auto-accept FreeFlexers that
-                                          have frequently worked with me.
+                                          {
+                                            Labels.hoursBeforeTheStartOfTheShiftAutoAcceptFreeflexersThatHaveFrequentlyWorkedWithMe
+                                          }
                                         </p>
                                       </div>
                                       <div>
@@ -291,7 +301,9 @@ const CreatePlannings = () => {
                       <div>
                         <p className="mb-0">
                           <small>
-                            <small className="">Cancellation policy</small>
+                            <small className="">
+                              {Labels.cancellationPolicy}
+                            </small>
                           </small>
                         </p>
                         <Row>
@@ -304,12 +316,12 @@ const CreatePlannings = () => {
                       </div>
                     </div>
                   </Tab>
-                  <Tab eventKey="shift Roles" title="Shift Roles">
+                  <Tab eventKey="shift Roles"  title={Labels.shiftRoles}>
                     <div className="d-flex flex-column gap-3">
                       <div>
                         <p className="mb-0">
                           <span className="">
-                            Select who can manage this shift
+                            {Labels.selectWhoCanManageThisShift}
                           </span>
                         </p>
                         <Row>
@@ -320,7 +332,7 @@ const CreatePlannings = () => {
                                   variant="white"
                                   className="px-4 py-2 rounded-1 shadow-sm border w-100 bg-white text-start"
                                 >
-                                  <span>Add User</span>
+                                  <span>{Labels.addUser}</span>
                                 </Button>
                               </div>
                             </div>
@@ -341,21 +353,21 @@ const CreatePlannings = () => {
                                   <th className="bg-transparent" width="20%">
                                     <small>
                                       <small className="fw-normal">
-                                        Edit / Cancel Shift
+                                        {Labels.editCancelShift}
                                       </small>
                                     </small>
                                   </th>
                                   <th className="bg-transparent" width="20%">
                                     <small>
                                       <small className="fw-normal">
-                                        Select Applicants
+                                        {Labels.selectApplicants}
                                       </small>
                                     </small>
                                   </th>
                                   <th className="bg-transparent" width="20%">
                                     <small>
                                       <small className="fw-normal">
-                                        Checkout
+                                        {Labels.checkout}
                                       </small>
                                     </small>
                                   </th>
@@ -416,10 +428,10 @@ const CreatePlannings = () => {
                     variant="white"
                     className="px-4 py-2 rounded-1 shadow-sm border"
                   >
-                    <span>Place and add another</span>
+                    <span>{Labels.placeAndAddAnother}</span>
                   </Button>
                   <Button variant="danger" className="px-5 py-2 rounded-1">
-                    <span>Place a shift</span>
+                    <span>{Labels.placeAShift}</span>
                   </Button>
                 </div>
               </Col>

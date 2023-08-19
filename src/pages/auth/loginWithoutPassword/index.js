@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Labels } from "../../../assets/labels";
 
 const LoginWithoutPassword = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const LoginWithoutPassword = () => {
                 <Form.Group as={Col}>
                   <Form.Label>
                     <span className="fs-4 fw-bold">
-                      Login without a password
+                      {Labels.loginWithoutAPassword}
                     </span>
                   </Form.Label>
                 </Form.Group>
@@ -30,14 +31,15 @@ const LoginWithoutPassword = () => {
 
               <Row className="">
                 <p className={"text-body-tertiary"}>
-                  Please enter your email address below, and we'll send you a
-                  link to login.
+                  {
+                    Labels.pleaseEnterYourEmailAddressBelowAndWellSendYouALinkToLogin
+                  }
                 </p>
               </Row>
               <Row className="mb-3">
                 <Form.Group as={Col} controlId="formGridEmail">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Email" />
+                  <Form.Label> {Labels.email}</Form.Label>
+                  <Form.Control type="email" placeholder={Labels.email} />
                 </Form.Group>
               </Row>
 
@@ -51,7 +53,7 @@ const LoginWithoutPassword = () => {
                       onSubmit();
                     }}
                   >
-                    Login without a password
+                    {Labels.loginWithoutAPassword}
                   </Button>
                 </Form.Group>
               </Row>

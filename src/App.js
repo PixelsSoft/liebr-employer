@@ -14,7 +14,9 @@ import CheckOut from "./pages/dashboard/checkout";
 import Login from "./pages/auth/login.js";
 import LoginWithoutPassword from "./pages/auth/loginWithoutPassword";
 import ResetPassword from "./pages/auth/resetPassword";
-
+import CreateProject from "./pages/dashboard/project/createProject";
+import ArchiveProject from "./pages/dashboard/project/archiveProject";
+import CreateFlexPool from "./pages/dashboard/flexPool/createFlexPool"
 export default function App() {
   return (
     <>
@@ -31,10 +33,14 @@ export default function App() {
           element={<CreatePlannings />}
         />
         <Route path="/checkout" element={<CheckOut />} />
-        <Route path="/flexPools" element={<FlexPools />} />
+        <Route path="/flex-pools" element={<FlexPools />} />
+        <Route path="/flex-pools/create/" element={<CreateFlexPool />} />
+        
         {/* <Route path="/Projects" element={<Projects />} /> */}
 
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/create" element={<CreateProject />} />
+        <Route path="/projects/archive" element={<ArchiveProject />} />
       </Routes>
       <ToastContainer
         position="top-center"

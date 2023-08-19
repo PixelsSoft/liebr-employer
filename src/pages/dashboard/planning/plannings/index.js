@@ -13,6 +13,7 @@ import PageLayout from "../../../../layouts/PageLayout";
 
 import Flatpickr from "react-flatpickr";
 import "../planning.css";
+import { Labels } from "../../../../assets/labels";
 const shiftStatus = [
   {
     label: "Fulfilled",
@@ -105,7 +106,7 @@ export default function Planning() {
                 <Col lg={12}>
                   <div className="d-flex flex-wrap justify-content-end gap-3 py-3 ">
                     <div>
-                      <span>Need help? Contact our support department</span>
+                      <span>{Labels.needHelpContactOurSupportDepartment}</span>
                     </div>
                     <div className="d-flex flex-wrap gap-2 cursor-pointer">
                       <div>
@@ -123,7 +124,7 @@ export default function Planning() {
                   <div className="d-flex gap-4 justify-content-between">
                     <div>
                       <span className="fs-4 fw-bold">
-                        Week {moment(selectedDate).week()}
+                        {Labels.week} {moment(selectedDate).week()}
                       </span>
                     </div>
                     <div className="d-flex flex-column ">
@@ -180,7 +181,7 @@ export default function Planning() {
                       variant="white"
                       className="shadow-sm border rounded-1"
                     >
-                      Shift statuses
+                      {Labels.shiftStatuses}
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="rounded-1">
@@ -210,7 +211,7 @@ export default function Planning() {
                     className="px-3 rounded-1"
                     onClick={handleClickCreateShift}
                   >
-                    <span className="">Create a shift</span>
+                    <span className=""> {Labels.createAShift}</span>
                   </Button>
                 </Col>
               </Row>
