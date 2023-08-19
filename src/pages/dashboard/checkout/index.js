@@ -4,6 +4,7 @@ import React, { Fragment } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 
 import PageLayout from "../../../layouts/PageLayout";
+import { Labels } from "../../../assets/labels";
 export default function CheckOut() {
   return (
     <PageLayout>
@@ -16,7 +17,7 @@ export default function CheckOut() {
                 <Col lg={12}>
                   <div className="d-flex flex-wrap justify-content-between gap-3 py-3">
                     <div>
-                      <span className="fs-4 fw-bold">Checkouts</span>
+                      <span className="fs-4 fw-bold">{Labels.checkout}</span>
                     </div>
                   </div>
                 </Col>
@@ -37,13 +38,14 @@ export default function CheckOut() {
                           <Card.Title>
                             <div>
                               <span className="fs-4 fw-bold">
-                                It's quiet at the moment...
+                                {Labels.itsQuietAtTheMoment}
                               </span>
                             </div>
                           </Card.Title>
                           <Card.Text className="mt-3">
-                            Once a FreeFlexer has checked out, you can verify
-                            their checkout data on <br /> this screen.
+                            {
+                              Labels.onceAFreeflexerHasCheckedOutYouCanVerifyTheirCheckoutDataOnThisScreen
+                            }
                           </Card.Text>
                         </div>
                       </div>
