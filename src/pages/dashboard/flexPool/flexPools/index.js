@@ -3,11 +3,12 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import Table from "react-bootstrap/Table";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiSprayCan } from "react-icons/bi";
-import { FaArchive } from "react-icons/fa";
 
 import { BsPencil } from "react-icons/bs";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
+import { Link } from "react-router-dom";
+import { Labels } from "../../../../assets/labels";
 import PageLayout from "../../../../layouts/PageLayout";
 
 const FlexPools = () => {
@@ -27,16 +28,21 @@ const FlexPools = () => {
                       </span>
                     </div>
                     <div className="d-flex gap-3">
-                      <Button variant="danger" className="px-3 py-1 rounded-1">
-                        <div className="d-flex gap-1">
-                          <div>
-                            <AiOutlinePlus color="#ffff" />
+                      <Link to="/flex-pools/create/">
+                        <Button
+                          variant="danger"
+                          className="px-3 py-1 rounded-1"
+                        >
+                          <div className="d-flex gap-1">
+                            <div>
+                              <AiOutlinePlus color="#ffff" />
+                            </div>
+                            <div>
+                              <span>{Labels.addNewFlexpool}</span>
+                            </div>
                           </div>
-                          <div>
-                            <span>Add new flexPool</span>
-                          </div>
-                        </div>
-                      </Button>
+                        </Button>
+                      </Link>
                     </div>
                   </div>
                 </Col>
