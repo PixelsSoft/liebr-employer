@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
-import Select from "react-select";
+import { Card, Col, Container, Row } from "react-bootstrap";
+// import Select from "react-select";
 import PageLayout from "../../../../layouts/PageLayout";
 import { Labels } from "../../../../assets/labels";
 

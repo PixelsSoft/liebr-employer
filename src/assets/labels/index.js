@@ -7,10 +7,10 @@ export let Labels = {
     "Forgot password? You can either choose to",
   loginWithoutAPassword: "Login without a password",
   login: "login",
-  loginWithoutAPassword: "Login without a password",
+
   pleaseEnterYourEmailAddressBelowAndWellSendYouALinkToLogin:
     "Please enter your email address below, and we'll send you a link to login.",
-  loginWithoutAPassword: "Login without a password",
+
   resetPassword: "Reset password",
   sendLink: "Send link",
   week: "week",

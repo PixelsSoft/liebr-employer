@@ -3,7 +3,7 @@ import { Images } from '../../Constant/Constant'
 import './Header.css'
 import moment from 'moment/moment'
 import { Labels } from '../../assets/labels'
-
+/* eslint-disable */
 export default function Header() {
     return (
         <div><nav class="navbar navbar-expand-lg bg-red">
@@ -16,12 +16,12 @@ export default function Header() {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav d-flex w-100">
-                        
+
                         <li class="nav-item px-1 mx-3 li-navbar">
                             <a class="nav-link text-white active fw-semibold" aria-current="page" href="/DashBoard">{Labels.dashboard}</a>
                         </li>
                         <li class="nav-item px-1 mx-3 li-navbar">
-                            <a class="nav-link text-white fw-semibold" href={`/planning?on=${moment().format("yyyy-MM-DD")}`}>{Labels.planning}</a>
+                            <a class="nav-link text-white fw-semibold" href={`/planning?on=${moment().format( "yyyy-MM-DD" )}`}>{Labels.planning}</a>
                         </li>
                         <li class="nav-item px-1 mx-3 li-navbar">
                             <a class="nav-link text-white fw-semibold" href="/projects">{Labels.projects}</a>

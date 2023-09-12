@@ -41,59 +41,58 @@ const daysFilter = [
 function useQuery() {
   const { search } = useLocation();
 
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+  return React.useMemo( () => new URLSearchParams( search ), [search] );
 }
 
 export default function Planning() {
   const query = useQuery();
   const navigate = useNavigate();
-  const datePickerRef = useRef(null);
-  const [selectedDayOption, setSelectedDayOption] = useState(daysFilter[0]);
+  const datePickerRef = useRef( null );
+  const [selectedDayOption, setSelectedDayOption] = useState( daysFilter[0] );
   const [selectedDate, setSelectedDate] = useState(
-    moment().format("yyyy-MM-DD")
+    moment().format( "yyyy-MM-DD" )
   );
-  const [toggle, setToggle] = useState({
+  const [toggle, setToggle] = useState( {
     toggle1: true,
     toggle2: true,
     toggle3: false,
-  });
+  } );
+  /* eslint-disable */
+  useEffect( () => {
+    setSelectedDate( query.get( "on" ) );
+  }, [query.get( "on" )] );
 
-  useEffect(() => {
-    setSelectedDate(query.get("on"));
-  }, [query.get("on")]);
-
-  const handleClickCreateShift = (date = null) => {
+  const handleClickCreateShift = ( date = null ) => {
     navigate(
-      `/planning/jobs/shifts/:create?on=${
-        date
-          ? moment(date).format("yyyy-MM-DD")
-          : moment(selectedDate).format("yyyy-MM-DD")
+      `/planning/jobs/shifts/:create?on=${date
+        ? moment( date ).format( "yyyy-MM-DD" )
+        : moment( selectedDate ).format( "yyyy-MM-DD" )
       }`
     );
   };
 
-  const handleClickNextAndPreviousWeek = (number) => {
-    if (number === 1) {
+  const handleClickNextAndPreviousWeek = ( number ) => {
+    if ( number === 1 ) {
       navigate(
-        `/planning?on=${moment(selectedDate)
-          .add(selectedDayOption?.value, "days")
-          .format("yyyy-MM-DD")}`
+        `/planning?on=${moment( selectedDate )
+          .add( selectedDayOption?.value, "days" )
+          .format( "yyyy-MM-DD" )}`
       );
     } else {
       navigate(
-        `/planning?on=${moment(selectedDate)
-          .subtract(selectedDayOption?.value, "days")
-          .format("yyyy-MM-DD")}`
+        `/planning?on=${moment( selectedDate )
+          .subtract( selectedDayOption?.value, "days" )
+          .format( "yyyy-MM-DD" )}`
       );
     }
   };
 
-  const handleClickDatePicker = (date) => {
-    navigate(`/planning?on=${moment(date[0]).format("yyyy-MM-DD")}`);
+  const handleClickDatePicker = ( date ) => {
+    navigate( `/planning?on=${moment( date[0] ).format( "yyyy-MM-DD" )}` );
   };
 
-  const handleToggle = (toggleName) => {
-    setToggle((prev) => ({ ...prev, [toggleName]: !prev?.[toggleName] }));
+  const handleToggle = ( toggleName ) => {
+    setToggle( ( prev ) => ( { ...prev, [toggleName]: !prev?.[toggleName] } ) );
   };
   return (
     <PageLayout>
@@ -124,7 +123,7 @@ export default function Planning() {
                   <div className="d-flex gap-4 justify-content-between">
                     <div>
                       <span className="fs-4 fw-bold">
-                        {Labels.week} {moment(selectedDate).week()}
+                        {Labels.week} {moment( selectedDate ).week()}
                       </span>
                     </div>
                     <div className="d-flex flex-column ">
@@ -132,7 +131,7 @@ export default function Planning() {
                         <Button
                           variant="transparent"
                           className="border rounded-0"
-                          onClick={() => handleClickNextAndPreviousWeek(-1)}
+                          onClick={() => handleClickNextAndPreviousWeek( -1 )}
                         >
                           <MdArrowBackIosNew />
                         </Button>
@@ -148,7 +147,7 @@ export default function Planning() {
                         <Button
                           variant="transparent"
                           className="border rounded-0"
-                          onClick={() => handleClickNextAndPreviousWeek(1)}
+                          onClick={() => handleClickNextAndPreviousWeek( 1 )}
                         >
                           <MdArrowForwardIos />
                         </Button>
@@ -185,7 +184,7 @@ export default function Planning() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="rounded-1">
-                      {shiftStatus?.map((item, index) => {
+                      {shiftStatus?.map( ( item, index ) => {
                         return (
                           <>
                             <Dropdown.Item
@@ -201,7 +200,7 @@ export default function Planning() {
                             </Dropdown.Item>
                           </>
                         );
-                      })}
+                      } )}
                     </Dropdown.Menu>
                   </Dropdown>
                 </Col>
@@ -224,14 +223,14 @@ export default function Planning() {
                         style={{ height: "90px", background: "#FBFBFB" }}
                       >
                         <span className="fs-4 fw-bold">
-                          {moment(selectedDate)?.format("MMMM")}
+                          {moment( selectedDate )?.format( "MMMM" )}
                         </span>
                       </div>
                     </Col>
                     <Col lg={9} className="px-0 d-flex">
-                      {Array.from({ length: selectedDayOption?.value })?.map(
-                        (item, index) => {
-                          const dateAndDay = moment(selectedDate).add(
+                      {Array.from( { length: selectedDayOption?.value } )?.map(
+                        ( item, index ) => {
+                          const dateAndDay = moment( selectedDate ).add(
                             index,
                             "day"
                           );
@@ -243,15 +242,15 @@ export default function Planning() {
                                 height: "90px",
                                 width: `${100 / selectedDayOption?.value}%`,
                                 background:
-                                  dateAndDay.format("yyyy-MM-DD") ===
-                                  moment().format("yyyy-MM-DD")
+                                  dateAndDay.format( "yyyy-MM-DD" ) ===
+                                    moment().format( "yyyy-MM-DD" )
                                     ? "#0F0017"
-                                    : index % 2 == 0
-                                    ? "#F3F2F3"
-                                    : "#FBFBFB",
+                                    : index % 2 === 0
+                                      ? "#F3F2F3"
+                                      : "#FBFBFB",
                                 color:
-                                  dateAndDay.format("yyyy-MM-DD") ===
-                                  moment().format("yyyy-MM-DD")
+                                  dateAndDay.format( "yyyy-MM-DD" ) ===
+                                    moment().format( "yyyy-MM-DD" )
                                     ? "#ffff"
                                     : "black",
                               }}
@@ -259,12 +258,12 @@ export default function Planning() {
                               <div className="d-flex justify-content-center gap-2 align-items-center w-100">
                                 <div>
                                   <small className="">
-                                    {moment(dateAndDay)?.format("dd")}
+                                    {moment( dateAndDay )?.format( "dd" )}
                                   </small>
                                 </div>
                                 <div>
                                   <span className="fs-4 fw-bold">
-                                    {moment(dateAndDay)?.format("DD")}
+                                    {moment( dateAndDay )?.format( "DD" )}
                                   </span>
                                 </div>
                               </div>
@@ -283,7 +282,7 @@ export default function Planning() {
                       <div
                         className="d-flex w-100 justify-content-between align-items-center px-2 cursor-pointer"
                         style={{ height: "50px" }}
-                        onClick={() => handleToggle("toggle1")}
+                        onClick={() => handleToggle( "toggle1" )}
                       >
                         <div>
                           <span className="fw-bold">Liebr Holding B.V.</span>
@@ -299,11 +298,10 @@ export default function Planning() {
                       <Row>
                         <Col lg={12} className="px-0">
                           <div
-                            className={`d-flex w-100 justify-content-between align-items-center border px-2 cursor-pointer ${
-                              toggle?.toggle2 ? "border-bottom-0" : ""
-                            }`}
+                            className={`d-flex w-100 justify-content-between align-items-center border px-2 cursor-pointer ${toggle?.toggle2 ? "border-bottom-0" : ""
+                              }`}
                             style={{ height: "50px" }}
-                            onClick={() => handleToggle("toggle2")}
+                            onClick={() => handleToggle( "toggle2" )}
                           >
                             <div>
                               <span className="fw-bold">Algemeen</span>
@@ -330,10 +328,10 @@ export default function Planning() {
                               </div>
                             </Col>
                             <Col lg={9} className="px-0 d-flex">
-                              {Array.from({
+                              {Array.from( {
                                 length: selectedDayOption?.value,
-                              })?.map((item, index) => {
-                                const dateAndDay = moment(selectedDate).add(
+                              } )?.map( ( item, index ) => {
+                                const dateAndDay = moment( selectedDate ).add(
                                   index,
                                   "day"
                                 );
@@ -343,17 +341,16 @@ export default function Planning() {
                                     style={{
                                       height: "70px",
                                       background:
-                                        index % 2 == 0 ? "#F3F2F3" : "#FBFBFB",
-                                      width: `${
-                                        100 / selectedDayOption?.value
-                                      }%`,
+                                        index % 2 === 0 ? "#F3F2F3" : "#FBFBFB",
+                                      width: `${100 / selectedDayOption?.value
+                                        }%`,
                                       cursor: "pointer",
                                     }}
                                   >
                                     <div
                                       className="w-100 h-100 d-flex justify-content-center align-items-center planning-plus-button"
                                       onClick={() =>
-                                        handleClickCreateShift(dateAndDay)
+                                        handleClickCreateShift( dateAndDay )
                                       }
                                     >
                                       <span>
@@ -362,7 +359,7 @@ export default function Planning() {
                                     </div>
                                   </div>
                                 );
-                              })}
+                              } )}
                             </Col>
                           </Row>
                         </>

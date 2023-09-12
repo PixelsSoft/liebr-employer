@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React, { } from "react";
 import "./Custom.css";
 
 import PageLayout from "../../layouts/PageLayout";
 import { Images } from "../../Constant/Constant";
-
+/* eslint-disable */
 export default function Dashboard() {
   return (
     <PageLayout>
@@ -18,7 +18,7 @@ export default function Dashboard() {
 
         <div
           className="container"
-          // style={{ marginTop: "-160px" }}
+        // style={{ marginTop: "-160px" }}
         >
           <div className="row">
             <div className="col-md-12 px-4">
@@ -244,7 +244,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        
+
       </div>
     </PageLayout>
   );

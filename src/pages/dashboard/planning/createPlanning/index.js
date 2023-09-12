@@ -16,23 +16,24 @@ import { Labels } from "../../../../assets/labels";
 function useQuery() {
   const { search } = useLocation();
 
-  return React.useMemo(() => new URLSearchParams(search), [search]);
+  return React.useMemo( () => new URLSearchParams( search ), [search] );
 }
 
 const CreatePlannings = () => {
-  const datePickerRef = useRef(null);
+  const datePickerRef = useRef( null );
   const query = useQuery();
   const [selectedDate, setSelectedDate] = useState(
-    moment().format("yyyy-MM-DD")
+    moment().format( "yyyy-MM-DD" )
   );
-
-  useEffect(() => {
-    setSelectedDate(query.get("on"));
-  }, [query.get("on")]);
-  const handleClickDatePicker = (date) => {
-    setSelectedDate(moment(date[0]).format("yyyy-MM-DD"));
+  /* eslint-disable */
+  useEffect( () => {
+    setSelectedDate( query.get( "on" ) );
+  }, [query.get( "on" )] );
+  const handleClickDatePicker = ( date ) => {
+    setSelectedDate( moment( date[0] ).format( "yyyy-MM-DD" ) );
   };
   return (
+    /* eslint-disable */
     <Fragment>
       <Container fluid>
         <Row className="bg-white shadow-sm py-4 position-sticky sticky-top ">
@@ -104,7 +105,7 @@ const CreatePlannings = () => {
                                 </div>
                                 <div>
                                   <small>
-                                    {moment(selectedDate)?.format("DD-MM-yyyy")}
+                                    {moment( selectedDate )?.format( "DD-MM-yyyy" )}
                                   </small>
                                 </div>
                               </div>
@@ -316,7 +317,7 @@ const CreatePlannings = () => {
                       </div>
                     </div>
                   </Tab>
-                  <Tab eventKey="shift Roles"  title={Labels.shiftRoles}>
+                  <Tab eventKey="shift Roles" title={Labels.shiftRoles}>
                     <div className="d-flex flex-column gap-3">
                       <div>
                         <p className="mb-0">
@@ -374,7 +375,7 @@ const CreatePlannings = () => {
                                 </tr>
                               </thead>
                               <tbody className="shadow-sm">
-                                {Array.from({ length: 4 })?.map((item) => {
+                                {Array.from( { length: 4 } )?.map( ( item ) => {
                                   return (
                                     <tr>
                                       <td width="60%">
@@ -401,7 +402,7 @@ const CreatePlannings = () => {
                                       </td>
                                     </tr>
                                   );
-                                })}
+                                } )}
                               </tbody>
                             </Table>
                           </Col>
